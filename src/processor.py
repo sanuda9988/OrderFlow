@@ -52,7 +52,7 @@ def get_low_stock_items(inventory):
 
 
 def process_orders(inventory, orders):
-    inventory = copy.deepcopy(inventory)  # don't touch the original
+    inventory = copy.deepcopy(inventory)  
     fulfilled = 0
     rejected = []
     revenue = Decimal("0.00")
