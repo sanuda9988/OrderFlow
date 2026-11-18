@@ -1,0 +1,9 @@
+order_id,customer_type,sku,quantity
+ORD-001,regular,KB-101,3
+ORD-002,vip,KB-101,5
+ORD-003,vip,KB-101,4
+ORD-004,regular,MS-202,2
+ORD-005,vip,MN-303,2
+ORD-006,regular,MN-303,1
+ORD-007,regular,XX-999,1
+ORD-008,vip,MS-202,-2
