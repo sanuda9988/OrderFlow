@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 
 from .file_handler import read_inventory, read_orders, write_inventory, write_summary
@@ -5,10 +6,13 @@ from .processor import process_orders, get_low_stock_items
 
 BASE = Path(__file__).resolve().parent.parent
 
-
 def main():
-    inventory = read_inventory(BASE / "data" / "inventory.csv")
-    orders = read_orders(BASE / "data" / "orders.csv")
+    try:
+        inventory = read_inventory(BASE / "data" / "inventory.csv")
+        orders = read_orders(BASE / "data" / "orders.csv")
+    except FileNotFoundError as error:
+        print(f"Error: input file not found: {error.filename}")
+        sys.exit(1)
 
     result = process_orders(inventory, orders)
     low_stock = get_low_stock_items(result["inventory"])
