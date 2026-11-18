@@ -1,18 +1,22 @@
 import csv
 import json
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 
 def read_inventory(path):
     inventory = {}
     with open(path, newline="", encoding="utf-8-sig") as f:
-        for row in csv.DictReader(f):
-            sku = row["sku"].strip()
-            inventory[sku] = {
-                "name": row["name"].strip(),
-                "price": Decimal(row["price"].strip()),
-                "stock": int(row["stock"].strip()),
-            }
-
+        for line_number, row in enumerate(csv.DictReader(f), start=2):
+            try:
+                sku = row["sku"].strip()
+                if not sku:
+                    raise ValueError("empty sku")
+                inventory[sku] = {
+                    "name": row["name"].strip(),
+                    "price": Decimal(row["price"].strip()),
+                    "stock": int(row["stock"].strip()),
+                }
+            except (KeyError, ValueError, AttributeError, InvalidOperation):
+                print(f"Warning: skipping bad inventory row {line_number}")
     return inventory
 
 
