@@ -1,0 +1,36 @@
+{
+  "total_orders": 8,
+  "fulfilled_count": 4,
+  "rejected_count": 4,
+  "total_revenue": 1185.0,
+  "rejected_orders": [
+    {
+      "order_id": "ORD-003",
+      "reason": "OUT_OF_STOCK"
+    },
+    {
+      "order_id": "ORD-006",
+      "reason": "OUT_OF_STOCK"
+    },
+    {
+      "order_id": "ORD-007",
+      "reason": "INVALID_SKU"
+    },
+    {
+      "order_id": "ORD-008",
+      "reason": "INVALID_QUANTITY"
+    }
+  ],
+  "low_stock_items": [
+    {
+      "sku": "KB-101",
+      "name": "Mechanical Keyboard",
+      "stock": 2
+    },
+    {
+      "sku": "MN-303",
+      "name": "24-inch Monitor",
+      "stock": 0
+    }
+  ]
+}

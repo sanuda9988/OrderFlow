@@ -55,9 +55,16 @@ def process_orders(inventory, orders):
     inventory = copy.deepcopy(inventory)  
     fulfilled = 0
     rejected = []
+    seen_ids = set()
     revenue = Decimal("0.00")
 
     for order in orders:
+        order_id = order.get("order_id", "").strip()
+        if order_id in seen_ids:
+            rejected.append({"order_id": order_id, "reason": "DUPLICATE_ORDER_ID"})
+            continue
+        seen_ids.add(order_id)
+
         reason, data = validate_order(order, inventory)
         if reason is not None:
             rejected.append({"order_id": order.get("order_id", ""), "reason": reason})
